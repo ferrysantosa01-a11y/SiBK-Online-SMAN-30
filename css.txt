@@ -1,0 +1,739 @@
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#0f766e;
+}
+
+.container{
+    width:100%;
+    height:100vh;
+}
+
+.left-panel{
+
+    width:100%;
+    height:100%;
+
+    background:#0f766e;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+transition: background-image .8s ease-in-out;
+
+}
+
+.overlay{
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.35);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.welcome-box{
+
+    text-align:center;
+    color:white;
+
+    width:90%;
+    max-width:650px;
+
+    padding:45px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:25px;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+.logo-area{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:35px;
+
+    margin-bottom:35px;
+
+}
+
+.logo-area img{
+
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:white;
+    padding:10px;
+transition:.3s;
+cursor:pointer;
+
+}
+.logo-area img:hover{
+
+    transform:scale(1.08) rotate(3deg);
+
+}
+h1{
+
+    font-size:50px;
+    margin-bottom:10px;
+
+}
+
+h2{
+
+    font-size:34px;
+    margin-bottom:15px;
+    color:#FFD54F;
+
+}
+
+p{
+
+    font-size:18px;
+    margin-bottom:35px;
+
+}
+
+#btnMasuk{
+
+    background:#16a34a;
+    color:white;
+
+    border:none;
+
+    padding:16px 55px;
+
+    font-size:18px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#btnMasuk:hover{
+
+    background:#15803d;
+
+    transform:translateY(-3px) scale(1.05);
+
+    box-shadow:0 10px 30px rgba(22,163,74,.45);
+
+}
+
+    background:#15803d;
+
+    transform:scale(1.05);
+
+}
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media screen and (max-width:992px){
+
+    .welcome-box{
+
+        width:92%;
+        padding:35px 25px;
+
+    }
+
+    h1{
+
+        font-size:42px;
+
+    }
+
+    h2{
+
+        font-size:30px;
+
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE HP
+========================================= */
+
+@media screen and (max-width:768px){
+
+    .logo-area{
+
+        gap:18px;
+
+    }
+
+    .logo-area img{
+
+        width:70px;
+        height:70px;
+        padding:8px;
+
+    }
+
+    .welcome-box{
+
+        width:92%;
+
+        padding:30px 20px;
+
+    }
+
+    h1{
+
+        font-size:32px;
+
+    }
+
+    h2{
+
+        font-size:24px;
+
+    }
+
+    p{
+
+        font-size:16px;
+
+        line-height:1.6;
+
+    }
+
+    #btnMasuk{
+
+        width:100%;
+
+        padding:15px;
+
+        font-size:18px;
+
+    }
+
+}
+
+
+/* =========================================
+   HP KECIL
+========================================= */
+
+@media screen and (max-width:480px){
+
+    .logo-area{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    .logo-area img{
+
+        width:65px;
+
+        height:65px;
+
+    }
+
+    h1{
+
+        font-size:28px;
+
+    }
+
+    h2{
+
+        font-size:22px;
+
+    }
+
+    p{
+
+        font-size:15px;
+
+    }
+
+}
+/* =========================================
+   ANIMASI LANDING PAGE
+========================================= */
+
+.welcome-box{
+
+    animation: muncul 1.2s ease;
+
+}
+
+
+.logo-area img{
+
+    animation: turun 1s ease;
+
+}
+
+
+#btnMasuk{
+
+    animation: naik 1.4s ease;
+
+}
+
+
+/* Kotak muncul */
+
+@keyframes muncul{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* Logo turun */
+
+@keyframes turun{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-30px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* Tombol naik */
+
+@keyframes naik{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:12px 20px;
+
+    background:rgba(0,0,0,.30);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    color:#ffffff;
+
+    z-index:999;
+
+}
+
+.footer-content{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    font-size:14px;
+
+}
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+.login-page{
+
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.login-overlay{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.35);
+
+}
+
+.login-box{
+
+    width:90%;
+    max-width:480px;
+
+    padding:40px;
+
+    text-align:center;
+
+    color:#ffffff;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:25px;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+/* =====================================================
+   LOGO LOGIN
+===================================================== */
+
+.login-logo{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:25px;
+
+}
+
+.login-logo img{
+
+    width:80px;
+    height:80px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    padding:8px;
+
+}
+
+/* =====================================================
+   HEADER LOGIN
+===================================================== */
+
+.login-header h3{
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    margin-bottom:8px;
+
+}
+
+.login-header h1{
+
+    color:#FFD54F;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.login-header p{
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    margin-bottom:30px;
+
+}
+
+/* =====================================================
+   FORM LOGIN
+===================================================== */
+
+.form-group{
+
+    text-align:left;
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#ffffff;
+
+    font-weight:bold;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:16px;
+
+}
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box input{
+
+    padding-right:50px;
+
+}
+
+#togglePassword{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+/* =====================================================
+   REMEMBER
+===================================================== */
+
+.login-option{
+
+    text-align:left;
+
+    margin-bottom:25px;
+
+    color:#ffffff;
+
+}
+
+/* =====================================================
+   TOMBOL LOGIN
+===================================================== */
+
+#btnLogin{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#16a34a;
+
+    color:#ffffff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#btnLogin:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(22,163,74,.45);
+
+}
+
+/* =====================================================
+   PESAN LOGIN
+===================================================== */
+
+#loginMessage{
+
+    margin-top:20px;
+
+    color:#FFD54F;
+
+    font-size:14px;
+
+    min-height:20px;
+
+}
+
+/* =====================================================
+   KEMBALI
+===================================================== */
+
+.back-home{
+
+    margin-top:25px;
+
+}
+
+.back-home a{
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+}
+
+.back-home a:hover{
+
+    color:#FFD54F;
+
+}
+
+/* =====================================================
+   RESPONSIVE LOGIN
+===================================================== */
+
+@media screen and (max-width:768px){
+
+    .login-box{
+
+        width:92%;
+
+        padding:30px 20px;
+
+    }
+
+    .login-logo img{
+
+        width:65px;
+        height:65px;
+
+    }
+
+    .login-header h1{
+
+        font-size:28px;
+
+    }
+
+}
+</style>

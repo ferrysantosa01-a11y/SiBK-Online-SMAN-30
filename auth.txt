@@ -1,0 +1,47 @@
+// ================================
+// AUTENTIKASI LOGIN SiBK ONLINE
+// ================================
+
+
+function prosesLogin(username, password) {
+
+  const users = getUsers();
+
+
+  for (let i = 0; i < users.length; i++) {
+
+
+    if (
+      users[i].username === username &&
+      users[i].password === password
+    ) {
+
+      return {
+        status: true,
+        role: users[i].role,
+        nama: users[i].nama
+      };
+
+    }
+
+  }
+
+
+  return {
+    status: false,
+    pesan: "Username atau password salah"
+  };
+
+}
+
+
+
+// TEST AUTH
+
+function testProsesLogin(){
+
+  const hasil = prosesLogin("admin","admin123");
+
+  console.log(JSON.stringify(hasil));
+
+}

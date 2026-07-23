@@ -1,0 +1,27 @@
+function doGet() {
+  return HtmlService.createTemplateFromFile('index')
+    .evaluate()
+    .setTitle("SiBK Online")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+// Memanggil file HTML lain
+function include(fileName) {
+  return HtmlService.createHtmlOutputFromFile(fileName).getContent();
+}
+function loadDashboard(){
+
+  return HtmlService
+    .createHtmlOutputFromFile("dashboard")
+    .getContent();
+
+}
+
+
+function loadSiswa(){
+
+  return HtmlService
+    .createHtmlOutputFromFile("siswa")
+    .getContent();
+
+}

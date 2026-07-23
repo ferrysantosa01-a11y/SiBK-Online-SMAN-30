@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<base target="_top">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+    padding:30px;
+    background:#f1f5f9;
+    font-family:Arial,Helvetica,sans-serif;
+
+}
+
+.container{
+
+    max-width:1200px;
+    margin:auto;
+    background:#ffffff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+
+}
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+
+}
+
+h1{
+
+    margin:0;
+    color:#0f4c81;
+    font-size:30px;
+
+}
+
+.toolbar{
+
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+
+}
+
+button{
+
+    background:#0f4c81;
+    color:#ffffff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#1565a7;
+
+}
+
+input,
+select{
+
+    width:100%;
+    padding:10px;
+    border:1px solid #d0d7de;
+    border-radius:8px;
+    font-size:14px;
+
+}
+
+#cariSiswa{
+
+    width:250px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+
+}
+
+th{
+
+    background:#0f4c81;
+    color:white;
+    padding:12px;
+    text-align:center;
+
+}
+
+td{
+
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+
+}
+
+tr:hover{
+
+    background:#f8fafc;
+
+}
+
+#formSiswa{
+
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    background:#f8fafc;
+    border-radius:12px;
+    border:1px solid #dbe4ea;
+
+}
+
+.form-group{
+
+    margin-bottom:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div>
+
+<h1>👨‍🎓 Data Siswa</h1>
+
+</div>
+
+<div class="toolbar">
+
+<button onclick="tampilForm()">
++ Tambah Siswa
+</button>
+
+<input
+type="text"
+id="cariSiswa"
+placeholder="🔍 Cari siswa">
+
+</div>
+
+</div>
+
+<div id="formSiswa">
+
+<h3 id="judulForm">
+Tambah Data Siswa
+</h3>
+
+<div class="form-group">
+
+<input
+type="text"
+id="nis"
+placeholder="Masukkan NIS">
+
+</div>
+
+<div class="form-group">
+
+<input
+type="text"
+id="nama"
+placeholder="Masukkan Nama Siswa">
+
+</div>
+<div class="form-group">
+
+<input
+type="text"
+id="kelas"
+placeholder="Masukkan Kelas">
+
+</div>
+
+
+<div class="form-group">
+
+<select id="jk">
+
+<option value="">
+-- Pilih Jenis Kelamin --
+</option>
+
+<option value="L">
+Laki-laki
+</option>
+
+<option value="P">
+Perempuan
+</option>
+
+</select>
+
+</div>
+
+
+<div style="margin-top:20px;display:flex;gap:10px;">
+
+<button
+id="btnSimpan"
+onclick="simpanSiswa()">
+
+💾 Simpan
+
+</button>
+
+
+<button
+type="button"
+onclick="batalForm()"
+style="background:#6b7280;">
+
+❌ Batal
+
+</button>
+
+</div>
+
+</div>
+
+
+<table id="tabelSiswa">
+
+<thead>
+
+<tr>
+
+<th width="60">No</th>
+
+<th>NIS</th>
+
+<th>Nama Siswa</th>
+
+<th>Kelas</th>
+
+<th width="120">JK</th>
+
+<th width="170">Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody id="dataSiswa">
+
+<tr>
+
+<td colspan="6">
+
+Memuat data...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<script>
+
+let modeEdit = false;
+
+let barisEdit = null;
+
+let daftarSiswa = [];
+
+
+// =====================================
+// LOAD DATA SISWA
+// =====================================
+
+function loadDataSiswa(){
+
+google.script.run
+
+.withSuccessHandler(function(data){
+
+daftarSiswa = data;
+
+const tbody = document.getElementById("dataSiswa");
+
+tbody.innerHTML = "";
+
+if(data.length==0){
+
+tbody.innerHTML=`
+
+<tr>
+
+<td colspan="6">
+
+Belum ada data siswa.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+let html="";
+
+data.forEach(function(row,index){
+
+html += `
+<tr>
+
+            <td>${index+1}</td>
+
+            <td>${row[0]}</td>
+
+            <td>${row[1]}</td>
+
+            <td>${row[2]}</td>
+
+            <td>${row[3]}</td>
+
+            <td>
+
+                <button onclick="editSiswa(${index})">
+                    ✏️ Edit
+                </button>
+
+                <button onclick="hapusSiswa(${index+2})">
+                    🗑️ Hapus
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+})
+.getDataSiswa();
+
+
+
+// ==============================
+// TAMPILKAN FORM
+// ==============================
+
+function tampilForm(){
+
+    modeEdit = false;
+    barisEdit = null;
+
+    document.getElementById("judulForm").innerHTML = "Tambah Data Siswa";
+    document.getElementById("btnSimpan").innerHTML = "💾 Simpan";
+
+    document.getElementById("nis").value = "";
+    document.getElementById("nama").value = "";
+    document.getElementById("kelas").value = "";
+    document.getElementById("jk").value = "";
+
+    document.getElementById("formSiswa").style.display = "block";
+
+}
+
+
+
+// ==============================
+// BATAL
+// ==============================
+
+function batalForm(){
+
+    document.getElementById("formSiswa").style.display = "none";
+
+}
+
+
+
+// ==============================
+// SIMPAN
+// ==============================
+
+function simpanSiswa(){
+
+    const data = {
+
+        nis : document.getElementById("nis").value,
+        nama : document.getElementById("nama").value,
+        kelas : document.getElementById("kelas").value,
+        jk : document.getElementById("jk").value
+
+    };
+
+    google.script.run
+    .withSuccessHandler(function(res){
+
+        alert(res);
+
+        location.reload();
+
+    })
+    .tambahSiswa(data);
+
+}
+
+
+
+// ==============================
+// EDIT
+// ==============================
+
+function editSiswa(index){
+
+    alert("Tahap berikutnya kita aktifkan Edit.");
+
+}
+
+
+
+// ==============================
+// HAPUS
+// ==============================
+
+function hapusSiswa(baris){
+
+    alert("Tahap berikutnya kita aktifkan Hapus.");
+
+}
+
+</script>
+
+</body>
+</html>

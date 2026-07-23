@@ -1,0 +1,115 @@
+<div class="login-page">
+
+    <div class="login-overlay">
+
+        <div class="login-box">
+
+
+            <!-- Logo -->
+            <div class="login-logo">
+
+                <img id="loginLogoSekolah" src="" alt="Logo Sekolah">
+
+                <img id="loginLogoBK" src="" alt="Logo BK">
+
+            </div>
+
+             <!-- Identitas -->
+            <div class="login-header">
+
+                <h3>SMAN 1  TANGERANG</h3>
+
+                <h1>SiBK Online</h1>
+
+                <p>
+                    Sistem Informasi Bimbingan dan Konseling Online
+                </p>
+
+            </div>
+
+            <!-- Form Login -->
+            <form id="formLogin">
+
+                <div class="form-group">
+
+                    <label>Username / NIP / NIS</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Masukkan Username"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Masukkan Password"
+                        >
+
+                        <span id="togglePassword">
+                            👁
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="login-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        Ingat Saya
+
+                    </label>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnLogin"
+                >
+
+                    MASUK KE APLIKASI
+
+                </button>
+
+            </form>
+
+            <!-- Pesan -->
+            <div id="loginMessage">
+
+            </div>
+
+            <!-- Kembali -->
+            <div class="back-home">
+
+                <a
+                    href="#"
+                    id="btnKembali"
+                >
+
+                    ← Kembali ke Halaman Awal
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

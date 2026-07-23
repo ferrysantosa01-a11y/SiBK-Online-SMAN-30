@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<base target="_top">
+
+<?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================
+     LANDING PAGE
+========================== -->
+
+<div id="landingPage">
+
+
+    <div class="left-panel">
+
+
+        <div class="overlay">
+
+
+            <div class="welcome-box">
+
+
+                <div class="logo-area">
+
+
+                    <img 
+                    id="logoSekolah" 
+                    src="" 
+                    alt="Logo Sekolah">
+
+
+                    <img 
+                    id="logoBK" 
+                    src="" 
+                    alt="Logo BK">
+
+
+                </div>
+
+
+
+                <h1>
+                    Selamat Datang
+                </h1>
+
+
+                <h2>
+                    SiBK Online
+                </h2>
+
+
+                <p>
+                    Sistem Informasi Bimbingan dan Konseling Online
+                </p>
+
+
+
+                <button id="btnMasuk">
+
+                    MASUK
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==========================
+        LOGIN PAGE
+========================== -->
+
+<div id="loginPage" style="display:none;">
+
+
+<?!= HtmlService.createHtmlOutputFromFile('login').getContent(); ?>
+
+
+</div>
+
+
+
+
+<!-- ==========================
+        FOOTER
+========================== -->
+
+
+<div class="footer-content">
+
+
+<span>
+SiBK Online v1.0.0
+</span>
+
+
+<span>
+|
+</span>
+
+
+<span>
+© 2026 BK SMAN 30 Kabupaten Tangerang
+</span>
+
+
+</div>
+
+
+
+
+<!-- ==========================
+        JAVASCRIPT
+========================== -->
+
+
+<?!= HtmlService.createHtmlOutputFromFile('js').getContent(); ?>
+
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+// =======================================
+// DATABASE SiBK ONLINE
+// =======================================
+
+const ID_SPREADSHEET = "1BM78E7N83TI4N-NvBT0T9dn8PMahwrucynsDrJhvuoc";
+
+
+// =======================================
+// DATA USER LOGIN
+// =======================================
+
+function getUsers(){
+
+  return [
+
+    {
+      username:"admin",
+      password:"admin123",
+      role:"admin",
+      nama:"Administrator"
+    },
+
+    {
+      username:"gurubk",
+      password:"bk123",
+      role:"guru_bk",
+      nama:"Guru BK"
+    },
+
+    {
+      username:"siswa",
+      password:"siswa123",
+      role:"siswa",
+      nama:"Siswa"
+    }
+
+  ];
+
+}
+
+
+// =======================================
+// AMBIL DATA SISWA
+// =======================================
+
+function getDataSiswa(){
+
+  const ss = SpreadsheetApp.openById(ID_SPREADSHEET);
+
+  const sheet = ss.getSheetByName("Siswa");
+
+  if(!sheet){
+    return [];
+  }
+
+  const data = sheet.getDataRange().getValues();
+
+  data.shift();
+
+  return data;
+
+}
+
+
+// =======================================
+// TAMBAH SISWA
+// =======================================
+
+function tambahSiswa(data){
+
+  const ss = SpreadsheetApp.openById(ID_SPREADSHEET);
+
+  const sheet = ss.getSheetByName("Siswa");
+
+  sheet.appendRow([
+    data.nis,
+    data.nama,
+    data.kelas,
+    data.jk
+  ]);
+
+  return "Data siswa berhasil disimpan";
+
+}
+
+
+// =======================================
+// EDIT SISWA
+// =======================================
+
+function editSiswa(data){
+
+  const ss = SpreadsheetApp.openById(ID_SPREADSHEET);
+
+  const sheet = ss.getSheetByName("Siswa");
+
+  sheet.getRange(data.baris,1,1,4).setValues([
+
+    [
+      data.nis,
+      data.nama,
+      data.kelas,
+      data.jk
+    ]
+
+  ]);
+
+  return "Data siswa berhasil diperbarui";
+
+}
+
+
+// =======================================
+// HAPUS SISWA
+// =======================================
+
+function hapusSiswa(baris){
+
+  const ss = SpreadsheetApp.openById(ID_SPREADSHEET);
+
+  const sheet = ss.getSheetByName("Siswa");
+
+  sheet.deleteRow(baris);
+
+  return "Data siswa berhasil dihapus";
+
+}

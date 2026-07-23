@@ -1,0 +1,197 @@
+<script>
+
+const BACKGROUNDS = [
+
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/background1.jpeg",
+
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/background2.jpeg",
+
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/background3.png",
+
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/background4.png"
+
+];
+
+
+const LOGO_SEKOLAH =
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/logo-sman30.png";
+
+
+const LOGO_BK =
+"https://raw.githubusercontent.com/ferrysantosa01-a11y/SiBK-Online/main/logo_bk.png";
+
+window.onload = function(){
+
+    let indexBackground = 0;
+
+
+function gantiBackground(){
+
+    document.querySelector(".left-panel").style.backgroundImage =
+    "url('" + BACKGROUNDS[indexBackground] + "')";
+
+
+    indexBackground++;
+
+
+    if(indexBackground >= BACKGROUNDS.length){
+
+        indexBackground = 0;
+
+    }
+
+}
+
+
+gantiBackground();
+
+
+setInterval(gantiBackground,10000);
+
+    document.querySelector(".left-panel").style.backgroundSize = "cover";
+    document.querySelector(".left-panel").style.backgroundPosition = "center";
+    document.querySelector(".left-panel").style.backgroundRepeat = "no-repeat";
+
+    document.getElementById("logoSekolah").src = LOGO_SEKOLAH;
+    document.getElementById("logoBK").src = LOGO_BK;
+// Logo Login
+document.getElementById("loginLogoSekolah").src = LOGO_SEKOLAH;
+document.getElementById("loginLogoBK").src = LOGO_BK;
+}
+// =====================================
+// TAMPILKAN LOGIN
+// =====================================
+
+document
+.getElementById("btnMasuk")
+.addEventListener("click",function(){
+
+    document.getElementById("landingPage").style.display="none";
+
+    document.getElementById("loginPage").style.display="block";
+
+});
+
+
+// =====================================
+// KEMBALI
+// =====================================
+
+document
+.addEventListener("click",function(e){
+
+    if(e.target.id==="btnKembali"){
+
+        e.preventDefault();
+
+        document.getElementById("loginPage").style.display="none";
+
+        document.getElementById("landingPage").style.display="block";
+
+    }
+
+});
+// =====================================
+// LOGIN
+// =====================================
+
+document.getElementById("btnLogin").addEventListener("click", function () {
+
+
+const username = document.getElementById("username").value.trim();
+const password = document.getElementById("password").value.trim();
+const pesan = document.getElementById("loginMessage");
+
+
+if (username === "") {
+
+    pesan.style.color = "#FF5252";
+    pesan.innerHTML = "Username harus diisi.";
+    document.getElementById("username").focus();
+
+    return;
+
+}
+
+
+if (password === "") {
+
+    pesan.style.color = "#FF5252";
+    pesan.innerHTML = "Password harus diisi.";
+    document.getElementById("password").focus();
+
+    return;
+
+}
+
+
+pesan.style.color = "#FFD54F";
+pesan.innerHTML = "Login sedang diproses...";
+
+
+
+google.script.run
+
+.withSuccessHandler(function(res){
+
+
+    if(res.status === true){
+
+
+        pesan.style.color = "#4ADE80";
+        pesan.innerHTML = "Login berhasil";
+
+
+        pesan.innerHTML = "Login berhasil. Membuka dashboard...";
+
+
+setTimeout(function(){
+
+    document.open();
+
+    google.script.run
+    .withSuccessHandler(function(html){
+
+        document.open();
+        document.write(html);
+        document.close();
+
+    })
+    .loadDashboard();
+
+
+},1000);
+
+
+    }else{
+
+
+        pesan.style.color = "#FF5252";
+        pesan.innerHTML = res.pesan;
+
+
+    }
+
+
+})
+
+
+.withFailureHandler(function(error){
+
+
+    pesan.style.color = "#FF5252";
+
+    pesan.innerHTML =
+    "Terjadi kesalahan server";
+
+
+})
+
+
+.prosesLogin(username,password);
+
+
+
+});
+
+</script>

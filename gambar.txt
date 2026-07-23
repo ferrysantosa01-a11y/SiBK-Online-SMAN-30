@@ -1,0 +1,8 @@
+const BACKGROUND =
+"https://drive.google.com/uc?export=view&id=1ZH38orH9TChxh-snEEebNWM0JKxSCl_-";
+
+const LOGO_SEKOLAH =
+"https://drive.google.com/uc?export=view&id=1OtaQjxG6s5X13iuZ2mfdIZ-K_Gq24TE5";
+
+const LOGO_BK =
+"https://drive.google.com/uc?export=view&id=1YfIti7fIM5LWLVx4tFCvKjj9dUDBtKOU";
